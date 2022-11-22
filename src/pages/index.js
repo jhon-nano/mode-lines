@@ -75,7 +75,7 @@ const tiers = [
 
 export default function Home() {
   const {
-    app: { tabValue },
+    app: { loading_pag },
   } = useSelector((state) => state);
 
   const theme = useTheme();
@@ -209,6 +209,11 @@ export default function Home() {
         </Stack>
       </Slide>
     );
+  }
+
+
+  if(loading_pag){
+    return null
   }
 
   return (

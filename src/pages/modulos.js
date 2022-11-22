@@ -4,6 +4,8 @@ import {
   Container,
   Divider,
   Grid,
+  ImageList,
+  ImageListItem,
   Paper,
   Slide,
   Stack,
@@ -17,79 +19,17 @@ import Head from "next/head";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Typewriter from "typewriter-effect";
+import CardModules from "../components/CardModules";
 import styles from "../styles/Home.module.css";
 
 export default function Modulos() {
-  const theme = useTheme();
-  const breakpoints_xs = useMediaQuery(theme.breakpoints.up("sm"));
 
-  function LogoApp() {
-    return (
-      <Image
-        src="/img/logo60wi.webp"
-        alt="CodeLines Logo"
-        width={255}
-        height={255}
-        sizes="100vw"
-        style={{
-          width: "100%",
-          height: "auto",
-        }}
-      />
-    );
-  }
+  const {
+    app: { loading_pag },
+  } = useSelector((state) => state);
 
-  function Texto() {
-    return (
-      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
-        <Stack alignContent={"end"} alignItems="end">
-          <Typography
-            component="h2"
-            variant="h3"
-            align="right"
-            color="white"
-            gutterBottom
-          >
-            <Typography
-              component="h2"
-              variant="h2"
-              align="right"
-              color="white"
-              gutterBottom
-            >
-              <b>
-                <Typewriter
-                  options={{
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter.pauseFor(1500).typeString("CODE LINES").start();
-                  }}
-                />
-              </b>
-            </Typography>
-            <Typography
-              component="h5"
-              variant="h5"
-              align="right"
-              color="white"
-              gutterBottom
-            >
-              <b>
-                <Typewriter
-                  options={{
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter.pauseFor(1500).typeString("MODULOS").start();
-                  }}
-                />
-              </b>
-            </Typography>
-          </Typography>
-        </Stack>
-      </Slide>
-    );
+  if(loading_pag){
+    return null
   }
 
   return (
@@ -100,18 +40,31 @@ export default function Modulos() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-        spacing={3}
-        sx={{ padding: 1 }}
+      <ImageList
+      
+        variant="masonry"
+        cols={3}
+        gap={2}
       >
-        <Grid item xs={9} sm={7} md={7} lg={7} xl={7}></Grid>
-
-        <Grid item xs={12} sm={4} md={4} lg={4} xl={4}></Grid>
-      </Grid>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+        <ImageListItem>
+          <CardModules />
+        </ImageListItem>
+      </ImageList>
     </div>
   );
 }

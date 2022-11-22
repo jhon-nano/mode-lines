@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
+import zIndex from "@mui/material/styles/zIndex";
 
 const scheme = getContentBasedScheme();
 
@@ -66,7 +67,7 @@ export default function LayoutApp({ children }) {
 
   return (
     <div className="box">
-      <Root scheme={scheme} >
+      <Root scheme={scheme}>
         <Header sx={{ background: "transparent" }}>
           <AppBarHeader />
         </Header>
@@ -80,6 +81,8 @@ export default function LayoutApp({ children }) {
             <Box
               sx={{
                 padding: 1,
+                overflow: 'auto',
+                zIndex: 2000
               }}
             >
               {children}
@@ -93,7 +96,6 @@ export default function LayoutApp({ children }) {
             zIndex: (theme) => theme.zIndex.drawer + 1,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundImage: `url(img/fondo.jpg)`,
           }}
           transitionDuration={{ appear: 1000, enter: 1000, exit: 1000 }}
           open={loading_pag}
