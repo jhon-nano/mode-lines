@@ -35,6 +35,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+
+
+
+
+amplify/backend/awscloudformation
+amplify/team-provider-info.json
+
+
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
