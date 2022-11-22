@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Content, getContentBasedScheme, Header, Root
 } from "@mui-treasury/layout";
@@ -9,9 +10,6 @@ import CircularProgress, {
 } from "@mui/material/CircularProgress";
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-
-import * as React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
