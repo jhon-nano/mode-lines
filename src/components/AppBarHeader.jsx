@@ -17,12 +17,11 @@ import { useRouter } from "next/router";
 
 const pages = [
   { name: "Home", path: "/" },
-  { name: "Modulos", path: "/modulo" },
+  { name: "Modulos", path: "/modulos" },
   { name: "Contacto", path: "/contacto" },
 ];
 
 function AppBarHeader() {
-
   const router = useRouter();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -34,7 +33,7 @@ function AppBarHeader() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+  console.log(router)
   return (
     <Container maxWidth="xl">
       <Toolbar disableGutters>
@@ -89,7 +88,11 @@ function AppBarHeader() {
             }}
           >
             {pages.map((page) => (
-              <MenuItem key={page.path} onClick={() => router.push(page.path)}>
+              <MenuItem
+                key={page.path}
+                disabled={page.path == router.asPath}
+                onClick={() => router.push(`/${page.path}`)}
+              >
                 <Typography textAlign="center">{page.name}</Typography>
               </MenuItem>
             ))}
@@ -128,6 +131,7 @@ function AppBarHeader() {
           {pages.map((page) => (
             <Button
               key={page.path}
+              disabled={page.path == router.asPath}
               onClick={() => router.push(page.path)}
               sx={{ my: 2, color: "white", display: "block" }}
             >

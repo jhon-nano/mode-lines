@@ -17,24 +17,24 @@ import { SnackbarProvider } from "notistack";
 import { Provider } from "react-redux";
 import { store, wrapper } from "../store/store";
 
-import {
-  createTheme, responsiveFontSizes
-} from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 // Create a theme instance.
 import LayoutApp from "../Layouts/LayoutApp";
 import palette from "../lib/theme";
 
-import '../styles/globals.css'
-
+import "../styles/globals.css";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-
 function MyApp(props) {
-
-  const { Component, emotionCache = clientSideEmotionCache, pageProps, user } = props;
+  const {
+    Component,
+    emotionCache = clientSideEmotionCache,
+    pageProps,
+    user,
+  } = props;
 
   const notistackRef = createRef();
 
@@ -44,11 +44,10 @@ function MyApp(props) {
     notistackRef.current.closeSnackbar(key);
   };
 
-
   const pathnames = router.pathname.split("/").filter((x) => x);
 
   let theme = createTheme({
-    mode: 'dark',
+    mode: "dark",
     ...palette,
     breakpoints: {
       values: {
@@ -59,18 +58,11 @@ function MyApp(props) {
         xl: 1536,
       },
     },
-
-
   });
-
-
 
   theme = responsiveFontSizes(theme);
 
-
-
   return (
-
     <CacheProvider value={emotionCache}>
       <Head>
         <title>Mode Lines - Error Page</title>
@@ -79,9 +71,7 @@ function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <ConfirmProvider
-
-        >
+        <ConfirmProvider>
           <SnackbarProvider
             dense={false}
             maxSnack={2}
@@ -99,34 +89,28 @@ function MyApp(props) {
             }}
             TransitionComponent={Collapse}
           >
-
             <Provider store={store}>
-              <Container maxWidth="xl" sx={{
-                background: '#FFAE00',
-                backgroundImage: `url(img/waves.svg)`,
-                height: '100vh'
+              <Container
+                maxWidth="xl"
+                sx={{
+                  background: "#FFAE00",
+                  backgroundImage: `url(img/waves.svg)`,
+                  height: "100vh",
+                }}
+              >
+                <div className="box">
+                  <LayoutApp {...props} pathnames={pathnames}>
+                    <Component {...props} {...pageProps} />
 
-              }}>
-                <LayoutApp {...props} pathnames={pathnames} >
-
-                  <Component
-
-                    {...props}
-                    {...pageProps}
-
-                  />
-
-
-                </LayoutApp>
-
+                    <div className="background-shapes"></div>
+                  </LayoutApp>
+                </div>
               </Container>
             </Provider>
-
           </SnackbarProvider>
         </ConfirmProvider>
       </ThemeProvider>
     </CacheProvider>
-
   );
 }
 

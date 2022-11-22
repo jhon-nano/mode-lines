@@ -48,7 +48,10 @@ function LayoutApp({ children, user, pathnames }) {
       //  `App is routeChangeComplete to ${url} ${shallow ? "with" : "without"
       //  } shallow routing`
       //);
-      dispatch(stopLoadingPagina("COMPLETADO"));
+      setTimeout(() => {
+        dispatch(stopLoadingPagina("COMPLETADO"));
+      }, 2000);
+  
     });
     router?.events.on("routeChangeError", (url, { shallow }) => {
       ////console.log(
@@ -95,6 +98,8 @@ function LayoutApp({ children, user, pathnames }) {
         </Fade>
 
       </Content>
+
+
       <Backdrop
         sx={{
           color: "#fff",
@@ -103,7 +108,7 @@ function LayoutApp({ children, user, pathnames }) {
           backgroundPosition: "center",
           backgroundImage: `url(img/fondo.jpg)`,
         }}
-        transitionDuration={{ appear: 2000, enter: 4000, exit: 2000 }}
+        transitionDuration={{ appear: 1000, enter: 1000, exit: 1000 }}
         open={loading_pag}
       >
         <Box
