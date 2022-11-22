@@ -1,10 +1,15 @@
-import { LOADING_PAGINA, MODE_THEME, STOP_LOADING_PAGINA, VALUE_TAB } from "./../types";
+import {
+  LOADING_PAGINA,
+  MODE_THEME,
+  STOP_LOADING_PAGINA,
+  VALUE_TAB,
+} from "./../types";
 
 const initialState = {
   loading_pag: false,
+  loading_pag_message: "",
   mode: "light",
-  tabValue: 0
-
+  tabValue: 0,
 };
 
 export default function app(state = initialState, action) {

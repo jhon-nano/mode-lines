@@ -6,8 +6,9 @@ export const loadingPagina = (message) => {
     loading_pag_message: message,
   };
 };
-export const stopLoadingPagina = () => ({
+export const stopLoadingPagina = (message) => ({
   type: types.STOP_LOADING_PAGINA,
+  loading_pag_message: message,
 });
 
 export const modeTheme = (mode) => ({

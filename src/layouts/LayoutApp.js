@@ -27,13 +27,11 @@ const scheme = getContentBasedScheme();
 function LayoutApp({ children, user, pathnames }) {
   //console.log(pathnames)
   const router = useRouter();
-  const theme = useTheme()
   const dispatch = useDispatch();
+
   const {
     app: { loading_pag, loading_pag_message, valueTab },
   } = useSelector((state) => state);
-
-  const [value, setValue] = React.useState(0);
 
 
   useEffect(() => {
@@ -50,37 +48,32 @@ function LayoutApp({ children, user, pathnames }) {
       //  `App is routeChangeComplete to ${url} ${shallow ? "with" : "without"
       //  } shallow routing`
       //);
-      dispatch(stopLoadingPagina());
+      dispatch(stopLoadingPagina("COMPLETADO"));
     });
     router?.events.on("routeChangeError", (url, { shallow }) => {
       ////console.log(
       //  `App is routeChangeError to ${url} ${shallow ? "with" : "without"
       //  } shallow routing`
       //);
-      dispatch(stopLoadingPagina());
+      dispatch(stopLoadingPagina("ERROR PAGINA"));
 
     });
 
     return () => {
       router?.events.off("routeChangeStart", () => {
-        //console.log("stoped");
+        console.log("stoped routeChangeStart");
       });
       router?.events.off("routeChangeComplete", () => {
-        //console.log("stoped");
+        console.log("stoped routeChangeComplete");
       });
       router?.events.off("routeChangeError", () => {
-        //console.log("stoped");
+        console.log("stoped routeChangeError");
       });
     };
-  }, [router?.events]);
+  }, [router?.events, dispatch]);
 
 
 
-
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <Root scheme={scheme}>
@@ -110,7 +103,7 @@ function LayoutApp({ children, user, pathnames }) {
           backgroundPosition: "center",
           backgroundImage: `url(img/fondo.jpg)`,
         }}
-        transitionDuration={{ appear: 2000, enter: 2000, exit: 2000 }}
+        transitionDuration={{ appear: 2000, enter: 4000, exit: 2000 }}
         open={loading_pag}
       >
         <Box

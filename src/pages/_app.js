@@ -25,7 +25,7 @@ import {
 import LayoutApp from "../Layouts/LayoutApp";
 import palette from "../lib/theme";
 
-
+import '../styles/globals.css'
 
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -73,7 +73,7 @@ function MyApp(props) {
 
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>App EcoFerre</title>
+        <title>Mode Lines - Error Page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>

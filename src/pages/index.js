@@ -9,7 +9,7 @@ import {
   Stack,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { styled } from "@mui/system";
@@ -78,14 +78,138 @@ export default function Home() {
     app: { tabValue },
   } = useSelector((state) => state);
 
-  const theme = useTheme()
+  const theme = useTheme();
   const breakpoints_xs = useMediaQuery(theme.breakpoints.up("sm"));
 
-  const time = setTimeout(() => {
-    console.log('Hello, World!')
-  }, 3000)
+  function LogoApp() {
+    return (
+      <Image
+        src="/img/logo60wi.webp"
+        alt="CodeLines Logo"
+        width={255}
+        height={255}
+        sizes="100vw"
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
+      />
+    );
+  }
 
-  console.log(time)
+  function Texto() {
+    return (
+      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+        <Stack alignContent={"end"} alignItems="end">
+          <Typography
+            component="h2"
+            variant="h3"
+            align="right"
+            color="white"
+            gutterBottom
+          >
+            <Typography
+              component="h2"
+              variant="h2"
+              align="right"
+              color="white"
+              gutterBottom
+            >
+              <b>
+                <Typewriter
+                  options={{
+                    autoStart: true,
+                  }}
+                  onInit={(typewriter) => {
+                    typewriter.pauseFor(1500).typeString("CODE LINES").start();
+                  }}
+                />
+              </b>
+            </Typography>
+            <Typography
+              component="h5"
+              variant="h5"
+              align="right"
+              color="white"
+              gutterBottom
+            >
+              <b>
+                <Typewriter
+                  options={{
+                    autoStart: true,
+                  }}
+                  onInit={(typewriter) => {
+                    typewriter
+                      .pauseFor(1500)
+                      .typeString("APLICACIONES")
+                      .start();
+                  }}
+                />
+              </b>
+            </Typography>
+
+            <Typewriter
+              options={{
+                loop: true,
+                autoStart: true,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(2500)
+                  .typeString("EN LA NUBE")
+                  .pauseFor(7500)
+                  .deleteAll()
+                  .start();
+              }}
+            />
+            <Typewriter
+              options={{
+                loop: true,
+                autoStart: true,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(4500)
+
+                  .typeString("ADAPTABLES")
+                  .pauseFor(5500)
+                  .deleteAll()
+                  .start();
+              }}
+            />
+            <Typewriter
+              options={{
+                loop: true,
+                autoStart: true,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(6500)
+                  .typeString("ESCALABLES")
+                  .pauseFor(3500)
+                  .deleteAll()
+                  .start();
+              }}
+            />
+            <Typewriter
+              options={{
+                loop: true,
+                autoStart: true,
+              }}
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(8500)
+                  .typeString("MÁS RÁPIDAS")
+                  .pauseFor(1500)
+                  .deleteAll()
+                  .start();
+              }}
+            />
+          </Typography>
+        </Stack>
+      </Slide>
+    );
+  }
 
   return (
     <div className={styles.container}>
@@ -103,134 +227,12 @@ export default function Home() {
         spacing={3}
         sx={{ padding: 1 }}
       >
-        <Grid item xs={12} sm={7} md={7} lg={7} xl={7}>
-          <Slide direction="up" in={true} mountOnEnter unmountOnExit>
-            <Stack alignContent={"end"} alignItems="end">
-
-              <Typography
-                component="h2"
-                variant="h3"
-                align="right"
-                color="white"
-                gutterBottom
-              >
-                <Typography
-                  component="h1"
-                  variant="h1"
-                  align="right"
-                  color="white"
-                  gutterBottom
-                ><b>
-                    <Typewriter
-                      options={{
-                        autoStart: true,
-                      }}
-                      onInit={(typewriter) => {
-                        typewriter.pauseFor(1500).typeString("CODE LINES").start();
-                      }}
-                    />
-                  </b>
-                </Typography>
-                <Typewriter
-                  options={{
-                    loop: true,
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter
-                      .pauseFor(2500)
-                      .typeString("EN LA NUBE")
-                      .pauseFor(2500)
-                      .deleteChars(11)
-                      .start();
-                  }}
-                />
-                <Typewriter
-                  options={{
-                    loop: true,
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter
-                      .pauseFor(3500)
-                      .typeString("ESCALABLE")
-                      .pauseFor(3500)
-                      .deleteChars(11)
-                      .start();
-                  }}
-                />
-                <Typewriter
-                  options={{
-                    loop: true,
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter
-                      .pauseFor(4500)
-                      .typeString("MÁS RÁPIDO")
-                      .pauseFor(4500)
-                      .deleteChars(11)
-                      .start();
-                  }}
-                />
-                <Typewriter
-                  options={{
-                    loop: true,
-                    autoStart: true,
-                  }}
-                  onInit={(typewriter) => {
-                    typewriter
-                      .pauseFor(5500)
-                      .typeString("OFF-LINE")
-                      .pauseFor(5500)
-                      .deleteChars(11)
-                      .start();
-                  }}
-                />
-              </Typography>
-
-
-
-            </Stack>
-          </Slide>
+        <Grid item xs={9} sm={7} md={7} lg={7} xl={7}>
+          {breakpoints_xs ? <Texto /> : <LogoApp />}
         </Grid>
-        <Grid item xs={12} sm={5} md={5} lg={5} xl={5}>
-
-          {breakpoints_xs ?
-          <Image
-          src="/img/logo60.webp"
-          alt="CodeLines Logo"
-          width={255}
-          height={255}
-          sizes="100vw"
-          style={{
-            width: '100%',
-            height: 'auto',
-          }}
-        />
-          :
-          
-          <Image
-            src="/img/app-control-logo.webp"
-            alt="CodeLines Logo"
-            width={355}
-            height={105}
-            sizes="100vw"
-            style={{
-              width: '100%',
-              height: 'auto',
-            }}
-          />}
-          <Stack alignContent={'center'} alignItems='center' sx={{ m: 3 }} >
-            <Button size="large" color='info' variant="contained" sx={{ width: '100%' }}>
-              Saber Más
-            </Button>
-          </Stack>
-
+        <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+          {breakpoints_xs ? <LogoApp /> : <Texto />}
         </Grid>
-
-
-
       </Grid>
     </div>
   );

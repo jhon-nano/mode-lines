@@ -13,26 +13,26 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Code";
 import Code from "@mui/icons-material/Code";
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { useRouter } from "next/router";
+
+const pages = [
+  { name: "Home", path: "/" },
+  { name: "Modulos", path: "/modulo" },
+  { name: "Contacto", path: "/contacto" },
+];
 
 function AppBarHeader() {
+
+  const router = useRouter();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -46,7 +46,6 @@ function AppBarHeader() {
           variant="h6"
           noWrap
           component="a"
-          href="/"
           sx={{
             mr: 2,
             display: { xs: "none", md: "flex" },
@@ -90,8 +89,8 @@ function AppBarHeader() {
             }}
           >
             {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
+              <MenuItem key={page.path} onClick={() => router.push(page.path)}>
+                <Typography textAlign="center">{page.name}</Typography>
               </MenuItem>
             ))}
           </Menu>
@@ -118,46 +117,36 @@ function AppBarHeader() {
         >
           CODE-LINES
         </Typography>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            mr: 1,
+          }}
+        >
+          <Box flexGrow={1} />
           {pages.map((page) => (
             <Button
-              key={page}
-              onClick={handleCloseNavMenu}
+              key={page.path}
+              onClick={() => router.push(page.path)}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              {page}
+              <b>{page.name}</b>
             </Button>
           ))}
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
+          <Tooltip title="DEMOSTRACION APP">
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              sx={{ p: 0 }}
+            >
+              DEMO
+            </Button>
           </Tooltip>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
         </Box>
       </Toolbar>
     </Container>

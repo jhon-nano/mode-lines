@@ -1,2 +1,4 @@
+export const LOADING_PAGINA = "LOADING_PAGINA";
+export const STOP_LOADING_PAGINA = "STOP_LOADING_PAGINA";
 export const MODE_THEME = "MODE_THEME";
 export const VALUE_TAB = "VALUE_TAB";
