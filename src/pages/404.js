@@ -49,7 +49,7 @@ export default function ErrorPage() {
                 loop: true,
               }}
               onInit={(typewriter) => {
-                typewriter.pauseFor(1500).typeString("¡¡UPS!!").start();
+                typewriter.pauseFor(1500).typeString("¡¡UPS!!").pauseFor(1500).start();
               }}
             />
           </b>

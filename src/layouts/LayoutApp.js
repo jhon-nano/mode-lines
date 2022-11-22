@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import {
-  Content, getContentBasedScheme, Header, Root
+  Content,
+  getContentBasedScheme,
+  Header,
+  Root,
 } from "@mui-treasury/layout";
-import {
-  Backdrop, Fade, Typography, useTheme
-} from "@mui/material";
+import { Backdrop, Fade, Typography } from "@mui/material";
 import CircularProgress, {
-  circularProgressClasses
+  circularProgressClasses,
 } from "@mui/material/CircularProgress";
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
@@ -14,26 +15,18 @@ import { useDispatch, useSelector } from "react-redux";
 import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
 
-
 const scheme = getContentBasedScheme();
 
-
-
-
-
-
-export default function LayoutApp({ children, user, pathnames }) {
+export default function LayoutApp({ children }) {
   //console.log(pathnames)
   const router = useRouter();
   const dispatch = useDispatch();
 
   const {
-    app: { loading_pag, loading_pag_message, valueTab },
+    app: { loading_pag, loading_pag_message },
   } = useSelector((state) => state);
 
-
   useEffect(() => {
-
     router?.events.on("routeChangeStart", (url, { shallow }) => {
       ////console.log(
       //  `App is routeChangeStart to ${url} ${shallow ? "with" : "without"
@@ -49,7 +42,6 @@ export default function LayoutApp({ children, user, pathnames }) {
       setTimeout(() => {
         dispatch(stopLoadingPagina("COMPLETADO"));
       }, 2000);
-  
     });
     router?.events.on("routeChangeError", (url, { shallow }) => {
       ////console.log(
@@ -57,7 +49,6 @@ export default function LayoutApp({ children, user, pathnames }) {
       //  } shallow routing`
       //);
       dispatch(stopLoadingPagina("ERROR PAGINA"));
-
     });
 
     return () => {
@@ -71,32 +62,29 @@ export default function LayoutApp({ children, user, pathnames }) {
         console.log("stoped routeChangeError");
       });
     };
-  }, [router?.events, dispatch]);
-
-
-
+  }, [router?.events]);
 
   return (
     <Root scheme={scheme}>
-
-      <Header sx={{ background: 'transparent' }} >
-        <AppBarHeader/>
+      <Header sx={{ background: "transparent" }}>
+        <AppBarHeader />
       </Header>
 
-      <Content >
+      <Content>
         <Fade
           in={true}
           style={{ transformOrigin: "0 0 0" }}
-          {...({ timeout: 2000 })}
+          {...{ timeout: 2000 }}
         >
-          <Box sx={{
-            padding: 1,
-
-          }}> {children}</Box>
+          <Box
+            sx={{
+              padding: 1,
+            }}
+          >
+            {children}
+          </Box>
         </Fade>
-
       </Content>
-
 
       <Backdrop
         sx={{
@@ -153,12 +141,6 @@ export default function LayoutApp({ children, user, pathnames }) {
           </Typography>
         </Box>
       </Backdrop>
-
-
-    </Root >
-  )
-
+    </Root>
+  );
 }
-
-
-
