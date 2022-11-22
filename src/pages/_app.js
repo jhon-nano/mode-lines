@@ -91,7 +91,7 @@ function MyApp(props) {
               <Container
                 maxWidth="xl"
                 sx={{
-                  background: "#FFAE00",
+                
                   backgroundImage: `url(img/waves.svg)`,
                   height: "100vh",
                 }}
