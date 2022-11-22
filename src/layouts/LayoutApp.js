@@ -24,7 +24,7 @@ const scheme = getContentBasedScheme();
 
 
 
-function LayoutApp({ children, user, pathnames }) {
+export default function LayoutApp({ children, user, pathnames }) {
   //console.log(pathnames)
   const router = useRouter();
   const dispatch = useDispatch();
@@ -163,6 +163,4 @@ function LayoutApp({ children, user, pathnames }) {
 }
 
 
-
-export default LayoutApp
 

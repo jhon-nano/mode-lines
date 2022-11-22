@@ -10,6 +10,14 @@
       "StackName": "amplify-modelines-dev-223307",
       "StackId": "arn:aws:cloudformation:us-east-1:409193214203:stack/amplify-modelines-dev-223307/63f79c70-6a16-11ed-9de7-0efcee6db611",
       "AmplifyAppId": "d27hgl0f7yids9"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d27hgl0f7yids9",
+          "type": "cicd"
+        }
+      }
     }
   }
 }
