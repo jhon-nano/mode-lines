@@ -100,7 +100,7 @@ function MyApp(props) {
                   <LayoutApp {...props} pathnames={pathnames}>
                     <Component {...props} {...pageProps} />
 
-                    <div className="background-shapes"></div>
+                 
                   </LayoutApp>
             
               </Container>

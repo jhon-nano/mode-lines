@@ -19,7 +19,6 @@ import { useSelector } from "react-redux";
 import Typewriter from "typewriter-effect";
 import styles from "../styles/Home.module.css";
 
-
 export default function Modulos() {
   const theme = useTheme();
   const breakpoints_xs = useMediaQuery(theme.breakpoints.up("sm"));
@@ -82,16 +81,11 @@ export default function Modulos() {
                     autoStart: true,
                   }}
                   onInit={(typewriter) => {
-                    typewriter
-                      .pauseFor(1500)
-                      .typeString("MODULOS")
-                      .start();
+                    typewriter.pauseFor(1500).typeString("MODULOS").start();
                   }}
                 />
               </b>
             </Typography>
-
-
           </Typography>
         </Stack>
       </Slide>
@@ -114,12 +108,9 @@ export default function Modulos() {
         spacing={3}
         sx={{ padding: 1 }}
       >
-        <Grid item xs={9} sm={7} md={7} lg={7} xl={7}>
-          {breakpoints_xs ? <Texto /> : <LogoApp />}
-        </Grid>
-        <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
-          {breakpoints_xs ? <LogoApp /> : <Texto />}
-        </Grid>
+        <Grid item xs={9} sm={7} md={7} lg={7} xl={7}></Grid>
+
+        <Grid item xs={12} sm={4} md={4} lg={4} xl={4}></Grid>
       </Grid>
     </div>
   );

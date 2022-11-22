@@ -65,82 +65,85 @@ export default function LayoutApp({ children }) {
   }, [router?.events]);
 
   return (
-    <Root scheme={scheme}  className="box">
-      <Header sx={{ background: "transparent" }}>
-        <AppBarHeader />
-      </Header>
+    <div className="box">
+      <Root scheme={scheme} >
+        <Header sx={{ background: "transparent" }}>
+          <AppBarHeader />
+        </Header>
 
-      <Content>
-        <Fade
-          in={true}
-          style={{ transformOrigin: "0 0 0" }}
-          {...{ timeout: 2000 }}
+        <Content>
+          <Fade
+            in={true}
+            style={{ transformOrigin: "0 0 0" }}
+            {...{ timeout: 2000 }}
+          >
+            <Box
+              sx={{
+                padding: 1,
+              }}
+            >
+              {children}
+            </Box>
+          </Fade>
+        </Content>
+
+        <Backdrop
+          sx={{
+            color: "#fff",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundImage: `url(img/fondo.jpg)`,
+          }}
+          transitionDuration={{ appear: 1000, enter: 1000, exit: 1000 }}
+          open={loading_pag}
         >
           <Box
             sx={{
-              padding: 1,
+              textTransform: "uppercase",
+              textAlign: "center",
+              alignContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              fontFamily: "Monospace",
             }}
           >
-            {children}
+            <CircularProgress
+              size={100}
+              disableShrink
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.light
+                    : theme.palette.primary.dark,
+                animationDuration: "1000ms",
+                left: 0,
+                [`& .${circularProgressClasses.circle}`]: {
+                  strokeLinecap: "round",
+                },
+              }}
+              thickness={4}
+            />
+            <Typography
+              component="div"
+              gutterBottom
+              variant="h6"
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.light
+                    : theme.palette.primary.dark,
+                background: "white",
+                borderRadius: "5px",
+                padding: "5px",
+              }}
+            >
+              <b>{loading_pag_message}</b>
+            </Typography>
           </Box>
-        </Fade>
-      </Content>
-
-      <Backdrop
-        sx={{
-          color: "#fff",
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundImage: `url(img/fondo.jpg)`,
-        }}
-        transitionDuration={{ appear: 1000, enter: 1000, exit: 1000 }}
-        open={loading_pag}
-      >
-        <Box
-          sx={{
-            textTransform: "uppercase",
-            textAlign: "center",
-            alignContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            fontFamily: "Monospace",
-          }}
-        >
-          <CircularProgress
-            size={100}
-            disableShrink
-            sx={{
-              color: (theme) =>
-                theme.palette.mode === "light"
-                  ? theme.palette.primary.light
-                  : theme.palette.primary.dark,
-              animationDuration: "1000ms",
-              left: 0,
-              [`& .${circularProgressClasses.circle}`]: {
-                strokeLinecap: "round",
-              },
-            }}
-            thickness={4}
-          />
-          <Typography
-            component="div"
-            gutterBottom
-            variant="h6"
-            sx={{
-              color: (theme) =>
-                theme.palette.mode === "light"
-                  ? theme.palette.primary.light
-                  : theme.palette.primary.dark,
-              background: "white",
-              borderRadius: "5px",
-              padding: "5px",
-            }}
-          >
-            <b>{loading_pag_message}</b>
-          </Typography>
-        </Box>
-      </Backdrop>
-    </Root>
+        </Backdrop>
+      </Root>
+      <div className="background-shapes"></div>
+    </div>
   );
 }
