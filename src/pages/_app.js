@@ -18,13 +18,11 @@ import { Provider } from "react-redux";
 import { store, wrapper } from "../store/store";
 
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-
-// Create a theme instance.
-import LayoutApp from "../Layouts/LayoutApp";
 import palette from "../lib/theme";
 
-import "../styles/globals.css";
+import LayoutApp from "../layouts/LayoutApp";
 
+import "../styles/globals.css";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -98,13 +96,13 @@ function MyApp(props) {
                   height: "100vh",
                 }}
               >
-                <div className="box">
+            
                   <LayoutApp {...props} pathnames={pathnames}>
                     <Component {...props} {...pageProps} />
 
                     <div className="background-shapes"></div>
                   </LayoutApp>
-                </div>
+            
               </Container>
             </Provider>
           </SnackbarProvider>

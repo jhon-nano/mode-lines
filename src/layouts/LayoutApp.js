@@ -65,7 +65,7 @@ export default function LayoutApp({ children }) {
   }, [router?.events]);
 
   return (
-    <Root scheme={scheme}>
+    <Root scheme={scheme}  className="box">
       <Header sx={{ background: "transparent" }}>
         <AppBarHeader />
       </Header>
