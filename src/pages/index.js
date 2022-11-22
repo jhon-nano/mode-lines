@@ -226,13 +226,15 @@ export default function Home() {
         alignItems="center"
         spacing={3}
         sx={{ padding: 1 }}
-      >
+      > 
         <Grid item xs={9} sm={7} md={7} lg={7} xl={7}>
           {breakpoints_xs ? <Texto /> : <LogoApp />}
         </Grid>
         <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
           {breakpoints_xs ? <LogoApp /> : <Texto />}
         </Grid>
+
+      
       </Grid>
     </div>
   );
