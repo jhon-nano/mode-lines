@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import {
   Content,
+  Footer,
   getContentBasedScheme,
   Header,
   Root,
 } from "@mui-treasury/layout";
-import { Backdrop, Fade, Typography } from "@mui/material";
+import { Backdrop, Fade, Paper, Typography } from "@mui/material";
 import CircularProgress, {
   circularProgressClasses,
 } from "@mui/material/CircularProgress";
@@ -14,7 +15,16 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
-import zIndex from "@mui/material/styles/zIndex";
+import Grid from "@mui/material/Unstable_Grid2";
+import { styled, useTheme } from "@mui/styles";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const scheme = getContentBasedScheme();
 
@@ -22,7 +32,7 @@ export default function LayoutApp({ children }) {
   //console.log(pathnames)
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const theme = useTheme();
   const {
     app: { loading_pag, loading_pag_message },
   } = useSelector((state) => state);
@@ -42,7 +52,7 @@ export default function LayoutApp({ children }) {
       //);
       setTimeout(() => {
         dispatch(stopLoadingPagina("COMPLETADO"));
-      }, 2000);
+      }, 1000);
     });
     router?.events.on("routeChangeError", (url, { shallow }) => {
       ////console.log(
@@ -79,14 +89,44 @@ export default function LayoutApp({ children }) {
         >
           <Box
             sx={{
-        
               overflow: "auto",
+              height: '78vh'
             }}
           >
             {children}
           </Box>
         </Fade>
 
+        <Footer sx={{background: theme.palette.primary.main, borderRadius: 4}}>
+          <Grid
+            container
+            justifyContent="space-between"
+            alignItems="center"
+            flexDirection={{ xs: "column", sm: "row" }}
+            sx={{ fontSize: "12px", padding: 1 }}
+            spacing={1}
+          >
+            <Grid sx={{ order: { xs: 2, sm: 1 } }}>
+              <Item>© Copyright</Item>
+            </Grid>
+            <Grid
+              container
+              columnSpacing={1}
+              sx={{ order: { xs: 1, sm: 2 } }}
+              spacing={1}
+            >
+              <Grid>
+                <Item>Link A</Item>
+              </Grid>
+              <Grid>
+                <Item>Link B</Item>
+              </Grid>
+              <Grid>
+                <Item>Link C</Item>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Footer>
         <Backdrop
           sx={{
             color: "#fff",
