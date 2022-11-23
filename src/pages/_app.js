@@ -56,59 +56,67 @@ function MyApp(props) {
         xl: 1536,
       },
     },
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            zIndex: 1200
+          },
+
+        },
+      },
+    },
   });
 
   theme = responsiveFontSizes(theme);
 
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <title>Mode Lines - Error Page</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <ConfirmProvider>
-          <SnackbarProvider
-            dense={false}
-            maxSnack={2}
-            preventDuplicate
-            ref={notistackRef}
-            autoHideDuration={3000}
-            action={(key) => (
-              <IconButton onClick={onClickDismiss(key)}>
-                <Close />
-              </IconButton>
-            )}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "right",
-            }}
-            TransitionComponent={Collapse}
-          >
-            <Provider store={store}>
-              <Container
-                maxWidth="xl"
-                sx={{
-                
-                  backgroundImage: `url(img/waves.svg)`,
-                  height: "100vh",
-                }}
-              >
-            
+    <div className="box">
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <title>Mode Lines - Error Page</title>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <ConfirmProvider>
+            <SnackbarProvider
+              dense={false}
+              maxSnack={2}
+              preventDuplicate
+              ref={notistackRef}
+              autoHideDuration={3000}
+              action={(key) => (
+                <IconButton onClick={onClickDismiss(key)}>
+                  <Close />
+                </IconButton>
+              )}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              TransitionComponent={Collapse}
+            >
+              <Provider store={store}>
+                <Container
+                 
+                  sx={{
+                    backgroundImage: `url(img/waves.svg)`,
+                    height: "100vh"
+                  }}
+                >
                   <LayoutApp {...props} pathnames={pathnames}>
                     <Component {...props} {...pageProps} />
-
-                 
                   </LayoutApp>
-            
-              </Container>
-            </Provider>
-          </SnackbarProvider>
-        </ConfirmProvider>
-      </ThemeProvider>
-    </CacheProvider>
+                </Container>
+              </Provider>
+            </SnackbarProvider>
+          </ConfirmProvider>
+        </ThemeProvider>
+      </CacheProvider>
+      <div className="background-shapes"></div>
+    </div>
   );
 }
 

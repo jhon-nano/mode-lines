@@ -72,23 +72,20 @@ export default function LayoutApp({ children }) {
           <AppBarHeader />
         </Header>
 
-        <Content>
-          <Fade
-            in={true}
-            style={{ transformOrigin: "0 0 0" }}
-            {...{ timeout: 2000 }}
+        <Fade
+          in={true}
+          style={{ transformOrigin: "0 0 0" }}
+          {...{ timeout: 2000 }}
+        >
+          <Box
+            sx={{
+        
+              overflow: "auto",
+            }}
           >
-            <Box
-              sx={{
-                padding: 1,
-                overflow: 'auto',
-                zIndex: 2000
-              }}
-            >
-              {children}
-            </Box>
-          </Fade>
-        </Content>
+            {children}
+          </Box>
+        </Fade>
 
         <Backdrop
           sx={{
@@ -145,7 +142,7 @@ export default function LayoutApp({ children }) {
           </Box>
         </Backdrop>
       </Root>
-      <div className="background-shapes"></div>
     </div>
   );
 }
+//

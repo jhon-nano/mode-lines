@@ -33,7 +33,7 @@ function AppBarHeader() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  console.log(router)
+
   return (
     <Container maxWidth="xl">
       <Toolbar disableGutters>

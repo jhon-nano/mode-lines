@@ -1,77 +1,17 @@
-import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
 import {
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Paper,
-  Slide,
+  Grid, Slide,
   Stack,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
-import { styled } from "@mui/system";
 import Head from "next/head";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Typewriter from "typewriter-effect";
 import styles from "../styles/Home.module.css";
 
-const TabPanel = styled(TabPanelUnstyled)(
-  ({ theme }) => `
-  width: 100%;
-  height: 100%;
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  padding: 20px 12px;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-  border-radius: 12px;
 
-  `
-);
-
-const tiers = [
-  {
-    title: "Free",
-    price: "0",
-    description: [
-      "10 users included",
-      "2 GB of storage",
-      "Help center access",
-      "Email support",
-    ],
-    buttonText: "Sign up for free",
-    buttonVariant: "outlined",
-  },
-  {
-    title: "Pro",
-    subheader: "Most popular",
-    price: "15",
-    description: [
-      "20 users included",
-      "10 GB of storage",
-      "Help center access",
-      "Priority email support",
-    ],
-    buttonText: "Get started",
-    buttonVariant: "contained",
-  },
-  {
-    title: "Enterprise",
-    price: "30",
-    description: [
-      "50 users included",
-      "30 GB of storage",
-      "Help center access",
-      "Phone & email support",
-    ],
-    buttonText: "Contact us",
-    buttonVariant: "outlined",
-  },
-];
 
 export default function Home() {
   const {

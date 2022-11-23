@@ -1,9 +1,10 @@
 import {
   Box,
-  Button, Stack,
+  Button,
+  Stack,
   Typography,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Image from "next/image";
@@ -49,7 +50,11 @@ export default function ErrorPage() {
                 loop: true,
               }}
               onInit={(typewriter) => {
-                typewriter.pauseFor(1500).typeString("¡¡UPS!!").pauseFor(1500).start();
+                typewriter
+                  .pauseFor(1500)
+                  .typeString("¡¡UPS!!")
+                  .pauseFor(1500)
+                  .start();
               }}
             />
           </b>
@@ -95,6 +100,7 @@ export default function ErrorPage() {
             variant="contained"
             size="large"
             onClick={() => router.push("/")}
+    
           >
             INICIO
           </Button>
