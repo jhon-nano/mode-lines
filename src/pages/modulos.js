@@ -22,21 +22,18 @@ export default function Modulos() {
   return (
       <Content
         sx={{
-          width: "100%",
-          height: "50%",
+    
         }}
       >
-        <Grid container spacing={1} sx={{ height: "100%" }}>
-          <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-            <Grid container spacing={3}>
+
+            <Grid container >
               {Array.from(new Array(9)).map((dato, i, array) => (
-                <Grid key={i} item xs={6} sm={4} md={3} lg={3} xl={3}>
+                <Grid key={i} item xs={6} sm={4} md={3} lg={2} xl={2}>
                   <CardModule />
                 </Grid>
               ))}
             </Grid>
-          </Grid>
-        </Grid>
+
       </Content>
 
   );

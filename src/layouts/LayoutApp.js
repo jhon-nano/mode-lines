@@ -6,7 +6,14 @@ import {
   Header,
   Root,
 } from "@mui-treasury/layout";
-import { Backdrop, Fade, Paper, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Fade,
+  IconButton,
+  Link,
+  Paper,
+  Typography,
+} from "@mui/material";
 import CircularProgress, {
   circularProgressClasses,
 } from "@mui/material/CircularProgress";
@@ -17,6 +24,7 @@ import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled, useTheme } from "@mui/styles";
+import { LinkedIn } from "@mui/icons-material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -83,21 +91,24 @@ export default function LayoutApp({ children }) {
         </Header>
 
         <Fade
-          in={true}
+          in={!loading_pag}
           style={{ transformOrigin: "0 0 0" }}
           {...{ timeout: 2000 }}
         >
           <Box
             sx={{
               overflow: "auto",
-              height: '78vh'
+              height: "78vh",
+              mb: 1,
             }}
           >
             {children}
           </Box>
         </Fade>
 
-        <Footer sx={{background: theme.palette.primary.main, borderRadius: 4}}>
+        <Footer
+          sx={{ background: theme.palette.primary.main, borderRadius: 4 }}
+        >
           <Grid
             container
             justifyContent="space-between"
@@ -107,7 +118,16 @@ export default function LayoutApp({ children }) {
             spacing={1}
           >
             <Grid sx={{ order: { xs: 2, sm: 1 } }}>
-              <Item>© Copyright</Item>
+              <Item>
+                © Diseño & Desarrollo por{" "}
+                <Link
+                  onClick={() =>
+                    window.open("https://www.instagram.com/jhonsanchez1601/")
+                  }
+                >
+                  Jhon Sanchez Vallejo
+                </Link>
+              </Item>
             </Grid>
             <Grid
               container
@@ -116,7 +136,9 @@ export default function LayoutApp({ children }) {
               spacing={1}
             >
               <Grid>
-                <Item>Link A</Item>
+                <IconButton>
+                  <LinkedIn />
+                </IconButton>
               </Grid>
               <Grid>
                 <Item>Link B</Item>

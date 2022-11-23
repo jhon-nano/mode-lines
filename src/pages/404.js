@@ -35,49 +35,63 @@ export default function ErrorPage() {
 
   function Texto() {
     return (
-      <Stack>
-        <Typography
-          component="h2"
-          variant="h2"
-          align="right"
-          color="red"
-          gutterBottom
-        >
-          <b>
-            <Typewriter
-              options={{
-                autoStart: true,
-                loop: true,
-              }}
-              onInit={(typewriter) => {
-                typewriter
-                  .pauseFor(1500)
-                  .typeString("¡¡UPS!!")
-                  .pauseFor(1500)
-                  .start();
-              }}
-            />
-          </b>
-        </Typography>
-        <Typography
-          component="h4"
-          variant="h4"
-          align="right"
-          color="white"
-          gutterBottom
-        >
-          <b>ERROR DE PAGINA</b>
-        </Typography>
-        <Typography
-          component="h2"
-          variant="h3"
-          align="right"
-          color="white"
-          gutterBottom
-        >
-          Esta no es la pagina que buscas
-        </Typography>
-      </Stack>
+
+        <Grid xs={12} sm={12} md={12} lg={12} xl={12}>
+          <Stack>
+            <Typography
+              component="h2"
+              variant="h2"
+              align="right"
+              color="red"
+              gutterBottom
+            >
+              <b>
+                <Typewriter
+                  options={{
+                    autoStart: true,
+                    loop: true,
+                  }}
+                  onInit={(typewriter) => {
+                    typewriter
+                      .pauseFor(1500)
+                      .typeString("¡¡UPS!!")
+                      .pauseFor(1500)
+                      .start();
+                  }}
+                />
+              </b>
+            </Typography>
+            <Typography
+              component="h4"
+              variant="h4"
+              align="right"
+              color="white"
+              gutterBottom
+            >
+              <b>ERROR DE PAGINA</b>
+            </Typography>
+            <Typography
+              component="h2"
+              variant="h3"
+              align="right"
+              color="white"
+              gutterBottom
+            >
+              Esta no es la pagina que buscas
+            </Typography>
+          </Stack>
+          <Box display={"flex"}>
+            <Box flexGrow={1} />
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => router.push("/")}
+            >
+              INICIO
+            </Button>
+          </Box>
+        </Grid>
+
     );
   }
 
@@ -85,31 +99,15 @@ export default function ErrorPage() {
     <Grid
       container
       direction="row"
-      justifyContent="space-between"
+      justifyContent="space-evenly"
       alignItems="center"
+
     >
-      {!breakpoints_xs ? (
-        <Grid item xs={1} sm={0} md={0} lg={0} xl={0} />
-      ) : null}
-
-      <Grid xs={9} sm={6} md={6} lg={6} xl={6}>
-        <Texto />
-        <Box display={"flex"}>
-          <Box flexGrow={1} />
-          <Button
-            variant="contained"
-            size="large"
-            onClick={() => router.push("/")}
-    
-          >
-            INICIO
-          </Button>
-        </Box>
+      <Grid item xs={10} sm={6} md={6} lg={6} xl={6}>
+        {breakpoints_xs ? <Texto /> : <LogoApp />}
       </Grid>
-      {!breakpoints_xs ? <Grid xs={1} sm={0} md={0} lg={0} xl={0} /> : null}
-
-      <Grid xs={12} sm={6} md={5} lg={5} xl={5}>
-        <LogoApp />
+      <Grid item xs={12} sm={5} md={4} lg={4} xl={4}>
+        {breakpoints_xs ? <LogoApp /> : <Texto />}
       </Grid>
     </Grid>
   );

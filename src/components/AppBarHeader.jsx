@@ -91,7 +91,10 @@ function AppBarHeader() {
               <MenuItem
                 key={page.path}
                 disabled={page.path == router.asPath}
-                onClick={() => router.push(`/${page.path}`)}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  router.push(`/${page.path}`);
+                }}
               >
                 <Typography textAlign="center">{page.name}</Typography>
               </MenuItem>
