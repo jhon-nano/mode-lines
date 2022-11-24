@@ -65,9 +65,9 @@ function AppBarHeader() {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
-            color="inherit"
+            color="secondary"
           >
-            <MenuIcon />
+            <MenuIcon sx={{ color: 'white' }}/>
           </IconButton>
           <Menu
             id="menu-appbar"
@@ -109,7 +109,7 @@ function AppBarHeader() {
           variant="h5"
           noWrap
           component="a"
-          href=""
+
           sx={{
             mr: 2,
             display: { xs: "flex", md: "none" },
@@ -134,6 +134,8 @@ function AppBarHeader() {
           {pages.map((page) => (
             <Button
               key={page.path}
+              variant={page.path == router.asPath ? "contained" : "outlined"}
+              color="secondary"
               disabled={page.path == router.asPath}
               onClick={() => router.push(page.path)}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -151,7 +153,7 @@ function AppBarHeader() {
               color="secondary"
               sx={{ p: 0.5 }}
             >
-             SOLICITAR DEMO
+              DEMO
             </Button>
           </Tooltip>
         </Box>

@@ -74,7 +74,7 @@ function MyApp(props) {
     <div className="box">
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>Mode Lines - Error Page</title>
+          <title>Web Mode Lines</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={theme}>
