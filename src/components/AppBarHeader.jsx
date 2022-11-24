@@ -149,9 +149,9 @@ function AppBarHeader() {
               variant="contained"
               size="large"
               color="secondary"
-              sx={{ p: 0 }}
+              sx={{ p: 0.5 }}
             >
-              DEMO
+             SOLICITAR DEMO
             </Button>
           </Tooltip>
         </Box>

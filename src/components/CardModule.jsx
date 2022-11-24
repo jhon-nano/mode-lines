@@ -1,22 +1,24 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
+import { Apps, Business, Devices, WifiOff } from "@mui/icons-material";
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Button,
+  CardActionArea,
+  CardActions,
+  Chip,
+  Divider,
+  Icon,
+} from "@mui/material";
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Chip } from "@mui/material";
-import { Box, Stack } from "@mui/system";
-import { Apps } from "@mui/icons-material";
+import { Stack } from "@mui/system";
+import * as React from "react";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,7 +31,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function CardModule() {
+export default function CardModule({ modulo }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -45,30 +47,60 @@ export default function CardModule() {
         marginTop: 2,
       }}
     >
-      <Card>
+      <Card
+        variant="outlined"
+        sx={{
+          opacity: 1,
+        }}
+      >
         <Chip
           label="MODULO"
           color="secondary"
           sx={{
             position: "absolute",
-            top: -15,
+            top: -20,
             border: 2,
             width: "80%",
             ml: 2,
           }}
         />
-        <CardHeader title="COMPRAS" />
+
+        <CardHeader title={modulo.nombreModulo} sx={{ textAlign: "center" }} />
+        <Divider />
         <CardMedia sx={{ textAlign: "center" }}>
-          <Apps fontSize="large"/>
+          <Icon color="info" style={{ fontSize: 70 }}>
+            {modulo.icon}
+          </Icon>
         </CardMedia>
+        <Divider />
 
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. 
-          </Typography>
-        </CardContent>
+        <Stack
+          direction={"row"}
+          alignContent="center"
+          alignItems={"center"}
+          padding={1}
+          spacing={1}
+        >
+          <Avatar variant="rounded" sx={{ width: 30, height: 30 }}>
+            <Business color={modulo.almacenes ? "primary" : "inherit"} />
+          </Avatar>
 
+          <Avatar variant="rounded" sx={{ width: 30, height: 30 }}>
+            <Devices color={modulo.responsive ? "primary" : "inherit"} />
+          </Avatar>
+
+          <Avatar variant="rounded" r sx={{ width: 30, height: 30 }}>
+            <WifiOff color={modulo.offline ? "primary" : "inherit"} />
+          </Avatar>
+        </Stack>
+
+        <Divider />
+        <CardActions>
+          <Box flexGrow={1} />
+          <Button size="small" variant="contained">
+            Saber Mas
+          </Button>
+        </CardActions>
       </Card>
     </Stack>
   );

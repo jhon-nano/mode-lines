@@ -8,6 +8,7 @@ import {
 } from "@mui-treasury/layout";
 import {
   Backdrop,
+  Chip,
   Fade,
   IconButton,
   Link,
@@ -24,7 +25,7 @@ import AppBarHeader from "../components/AppBarHeader";
 import { loadingPagina, stopLoadingPagina } from "../store/actions/app";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled, useTheme } from "@mui/styles";
-import { LinkedIn } from "@mui/icons-material";
+import { Code, GitHub, Instagram, LinkedIn } from "@mui/icons-material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -81,7 +82,7 @@ export default function LayoutApp({ children }) {
         console.log("stoped routeChangeError");
       });
     };
-  }, [router?.events]);
+  }, [router?.events, dispatch]);
 
   return (
     <div className="box">
@@ -118,16 +119,12 @@ export default function LayoutApp({ children }) {
             spacing={1}
           >
             <Grid sx={{ order: { xs: 2, sm: 1 } }}>
-              <Item>
-                © Diseño & Desarrollo por{" "}
-                <Link
-                  onClick={() =>
-                    window.open("https://www.instagram.com/jhonsanchez1601/")
-                  }
-                >
-                  Jhon Sanchez Vallejo
-                </Link>
-              </Item>
+              <Chip
+                color="secondary"
+                label={`© Diseño & Desarrollo por Jhon Sanchez Vallejo`}
+                icon={<Code />}
+
+              />
             </Grid>
             <Grid
               container
@@ -136,15 +133,25 @@ export default function LayoutApp({ children }) {
               spacing={1}
             >
               <Grid>
-                <IconButton>
-                  <LinkedIn />
+                <IconButton onClick={() =>
+                  window.open("https://www.linkedin.com/in/JhonSanchez1601")
+                }>
+                  <LinkedIn color="secondary" />
                 </IconButton>
               </Grid>
               <Grid>
-                <Item>Link B</Item>
+                <IconButton onClick={() =>
+                  window.open("https://github.com/jhon-nano")
+                }>
+                  <GitHub color="secondary" />
+                </IconButton>
               </Grid>
               <Grid>
-                <Item>Link C</Item>
+                <IconButton onClick={() =>
+                  window.open("https://www.instagram.com/jhonsanchez1601/")
+                }>
+                  <Instagram color="secondary" />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -195,7 +202,7 @@ export default function LayoutApp({ children }) {
                     ? theme.palette.primary.light
                     : theme.palette.primary.dark,
                 background: "white",
-                borderRadius: "5px",
+                borderRadius: "4px",
                 padding: "5px",
               }}
             >
