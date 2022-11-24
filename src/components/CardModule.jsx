@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import {
   Apps,
   Business,
@@ -7,6 +8,7 @@ import {
   Cloud,
   Delete,
   Devices,
+  Info,
   Security,
   WifiOff,
 } from "@mui/icons-material";
@@ -20,6 +22,7 @@ import {
   Chip,
   Divider,
   Icon,
+  useMediaQuery,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -46,9 +49,8 @@ const ExpandMore = styled((props) => {
 export default function CardModule({ modulo }) {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const theme = useTheme();
+  const breakpoints_xs = useMediaQuery(theme.breakpoints.up("sm"));
 
   const { responsive, almacenes, offline } = modulo;
 
@@ -83,7 +85,7 @@ export default function CardModule({ modulo }) {
 
         <Grid2 container columnSpacing={2}>
           <Grid2 xs={4} sm={4} md={4} lg={4} xl={4}>
-            <Icon color="info" style={{ fontSize: 100 }}>
+            <Icon color="info" style={{ fontSize: 80 }}>
               {modulo.icon}
             </Icon>
           </Grid2>
@@ -95,22 +97,16 @@ export default function CardModule({ modulo }) {
               spacing={0.5}
             >
               <Chip
-                label="Almacenes"
+                label={!breakpoints_xs ? "" : "Almacenes"}
                 icon={<Business color={almacenes ? "primary" : "inherit"} />}
-                onDelete={() => console.log("")}
-                deleteIcon={almacenes ? <Check color="success" /> : <Close />}
               />
               <Chip
-                label="Resposive"
+                label={!breakpoints_xs ? "" : "Resposive"}
                 icon={<Devices color={responsive ? "primary" : "inherit"} />}
-                onDelete={() => console.log("")}
-                deleteIcon={responsive ? <Check color="success" /> : <Close />}
               />
               <Chip
-                label="Offline"
+                label={!breakpoints_xs ? "" : "Offline"}
                 icon={<WifiOff color={offline ? "primary" : "inherit"} />}
-                onDelete={() => console.log("")}
-                deleteIcon={offline ? <Check color="success" /> : <Close />}
               />
               <Box flexGrow={1} />
             </Stack>
@@ -119,8 +115,8 @@ export default function CardModule({ modulo }) {
 
         <Divider />
         <CardActions>
-          <AvatarGroup >
-            <Avatar  sx={{ width: 30, height: 30 }} alt="Remy Sharp">
+          <AvatarGroup>
+            <Avatar sx={{ width: 30, height: 30 }} alt="Remy Sharp">
               <Security />
             </Avatar>
             <Avatar sx={{ width: 30, height: 30 }} alt="Remy Sharp">
@@ -128,9 +124,9 @@ export default function CardModule({ modulo }) {
             </Avatar>
           </AvatarGroup>
           <Box flexGrow={1} />
-          <Button size="small" variant="contained">
-            Saber Mas
-          </Button>
+          <IconButton size="small" variant="contained">
+            <Info color="info" />
+          </IconButton>
         </CardActions>
       </Card>
     </Stack>
